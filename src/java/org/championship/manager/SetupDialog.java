@@ -98,6 +98,11 @@ public class SetupDialog extends JDialog {
      *
      */
     private void initComponents() {
+    	Championship championship = mainFrame.getChampionship();
+    	
+    	int preliminaryRoundGames = championship.getPreliminaryRoundGames().size();
+    	int intermediateStageGames = championship.getIntermediateStageGames().size();
+    	
         okB = new javax.swing.JButton();
         cancelB = new javax.swing.JButton();
         applyB = new javax.swing.JButton();
@@ -105,11 +110,11 @@ public class SetupDialog extends JDialog {
         championshipSetupP = new ChampionshipSetupPanel(mainFrame);
         groupSetupP = new GroupSetupPanel(mainFrame, "preliminary_groups");
         intermediateStageGroupSetupP = new GroupSetupPanel(mainFrame, "intermediate_groups");
-        intermediateStageLinkingP = new TeamLinkingPanel(mainFrame, "intermediate_stage", 24, 61);
-        quarterFinalLinkingP = new TeamLinkingPanel(mainFrame, "quarter_final", 4, 85);
-        semiFinalLinkingP = new TeamLinkingPanel(mainFrame, "semi_final", 2, 89);
-        thirdPlaceGameLinkingP = new TeamLinkingPanel(mainFrame, "third_place_game", 1, 91);
-        finalLinkingP = new TeamLinkingPanel(mainFrame, "final", 1, 92);
+        intermediateStageLinkingP = new TeamLinkingPanel(mainFrame, "intermediate_stage", intermediateStageGames, preliminaryRoundGames + 1);
+        quarterFinalLinkingP = new TeamLinkingPanel(mainFrame, "quarter_final", 4, preliminaryRoundGames + intermediateStageGames + 1);
+        semiFinalLinkingP = new TeamLinkingPanel(mainFrame, "semi_final", 2, preliminaryRoundGames + intermediateStageGames + 1 + 4);
+        thirdPlaceGameLinkingP = new TeamLinkingPanel(mainFrame, "third_place_game", 1, preliminaryRoundGames + intermediateStageGames + 1 + 4 + 2);
+        finalLinkingP = new TeamLinkingPanel(mainFrame, "final", 1, preliminaryRoundGames + intermediateStageGames + 1 + 4 + 2 + 1);
 
         okB.setText("OK");
 
